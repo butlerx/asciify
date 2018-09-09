@@ -59,14 +59,13 @@ _After_
 ## Usage
 
 ```bash
-git clone https://github.com/butler/ascii-logo
-pip install --user -r ascii-logo/requirments.txt
-python3 ascii-logo https://octodex.github.com/images/dojocat.jpg -p -w 75
+go get https://github.com/butler/ascii-logo/cmd/asciify
+asciify https://octodex.github.com/images/dojocat.jpg -p -w 75
 ```
 
 ## Features
 
 * Both remote and local images
 * scaling images based on width
-* Injecting into readme(or any markdown file) with the `{{ascii}}` keyword
+* Injecting into readme(or any markdown file) with the `{{.}}` keyword
 * Printing to terminal
