@@ -9,8 +9,8 @@ def inject_readme(readme_path: str, image: str) -> str:
 
 def inject(readme: str, image: str) -> str:
     """replace {{ascii}} with ascii image"""
-    txt = readme.split("{{ascii}}")
-    return "{}\n```{}```\n{}".format(txt[0], image, txt[1])
+    txt = readme.split("{{ascii}}", 1)
+    return "{}\n```{}\n```\n{}".format(txt[0], image, txt[1])
 
 
 def save(path: str, image: str):

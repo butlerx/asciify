@@ -11,13 +11,7 @@ _Before_
 _After_
 
 
-```
-
-
-
-
-
-            :
+```            :
            ;,
            :,            @@@@@@                                      *@@@@@
            :,            @@@@@@@@                                  @@@@@@@@@
@@ -105,11 +99,6 @@ _After_
                                 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                      ,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                             ,,,,,,,,,,,,
-
-
-
-
-
 ```
 
 
@@ -125,5 +114,5 @@ python3 ascii-logo https://octodex.github.com/images/dojocat.jpg -p -w 75
 
 * Both remote and local images
 * scaling images based on width
-* Injecting into readme(or any markdown file)
+* Injecting into readme(or any markdown file) with the `{{ascii}}` keyword
 * Printing to terminal
