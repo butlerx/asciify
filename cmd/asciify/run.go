@@ -26,14 +26,14 @@ func run(ctx *cli.Context) error {
 	} else if ctx.String("readme") != "" {
 		return asciify.InjectReadMe(ctx.String("readme"), img)
 	}
-	return asciify.Save(
-		filepath.Join(
-			ctx.String("path"),
-			strings.TrimSuffix(
-				filepath.Base(imgPath),
-				filepath.Ext(filepath.Base(imgPath))+".txt",
-			),
-		),
-		img,
-	)
+
+	txt := strings.TrimSuffix(
+		filepath.Base(imgPath),
+		filepath.Ext(filepath.Base(imgPath)),
+	) + ".txt"
+	if err := asciify.Save(filepath.Join(ctx.String("path"), txt), img); err != nil {
+		return err
+	}
+	fmt.Println(filepath.Base(imgPath), "saved too", ctx.String("path"), "as", filepath.Base(txt))
+	return nil
 }
