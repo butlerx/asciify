@@ -5,16 +5,18 @@ import (
 	"os"
 )
 
+// Readme template
+type Readme struct {
+	Image string
+}
+
 // InjectReadMe injects ascii in to readme where {{ . }} is
 func InjectReadMe(readmePath, img string) error {
-	tmpl, err := template.New("readme").ParseFiles(readmePath)
-	if err != nil {
-		return err
-	}
+	tmpl := template.Must(template.ParseFiles(readmePath))
 	output, err := os.Create(readmePath)
 	if err != nil {
 		return err
 	}
 	defer output.Close()
-	return tmpl.Execute(output, img)
+	return tmpl.Execute(output, Readme{"```\n" + img + "```\n"})
 }

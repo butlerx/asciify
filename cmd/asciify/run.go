@@ -11,6 +11,9 @@ import (
 )
 
 func run(ctx *cli.Context) error {
+	if ctx.NArg() == 0 {
+		fmt.Println("No file supplied, supply path or url of an image to convert it too ascii")
+	}
 	imgPath := ctx.Args().First()
 	file, err := asciify.GetFile(imgPath)
 	if err != nil {

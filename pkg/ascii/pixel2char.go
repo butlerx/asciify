@@ -9,7 +9,7 @@ import (
 
 // Pixel2Char Converts pixel too grey scale and replaces with a character whose intensity is similar
 func Pixel2Char(img image.Image) []byte {
-	chars := "MND8OZ$7I?+=~:,  "
+	chars := "MND8OZ$7I?*=~:,  "
 	buf := new(bytes.Buffer)
 	sz := img.Bounds()
 	for i := 0; i < sz.Max.Y; i++ {

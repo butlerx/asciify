@@ -11,6 +11,8 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "asciify"
+	app.Usage = "asciffy all the things"
+	app.UsageText = "asciffy [options] IMAGE"
 	app.Description = `
 		Every project needs a logo, so why not an ascii one.
 		Convert image to ascii.
