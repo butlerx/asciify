@@ -14,5 +14,5 @@ func Generate(reader io.Reader, width int) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return string(Pixel2Char(Resize(img, width))), nil
+	return trimWhitespace(string(Pixel2Char(Resize(img, width)))), nil
 }
