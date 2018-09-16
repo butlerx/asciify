@@ -70,7 +70,7 @@ _After_
 ## Usage
 
 ```bash
-go get https://github.com/butler/ascii-logo/cmd/asciify
+go get github.com/butlerx/ascii-logo/cmd/asciify
 asciify https://octodex.github.com/images/dojocat.jpg -p -w 75
 ```
 
