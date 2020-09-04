@@ -8,6 +8,8 @@ import (
 	"github.com/urfave/cli"
 )
 
+var version = "development"
+
 func main() {
 	app := cli.NewApp()
 	app.Name = "asciify"
@@ -23,7 +25,7 @@ func main() {
 			Email: "butlerx@notthe.cloud",
 		},
 	}
-	app.Version = "1.0.0"
+	app.Version = version
 	app.EnableBashCompletion = true
 	cwd, _ := os.Getwd()
 	app.Flags = []cli.Flag{

@@ -1,0 +1,48 @@
+---
+name: Build and Test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build
+    strategy:
+      matrix:
+        go:
+          - 1.13.x
+          - 1.14.x
+          - 1.15.x
+        platform:
+          - ubuntu-latest
+          - macos-latest
+          # - windows-latest
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Set up Go ${{ matrix.go }}
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
+        id: go
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+      - name: Restore dependencies Caches
+        uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - name: Get dependencies
+        run: make dep
+      - name: Test
+        run: make test
+      - name: Build
+        run: make build
+      - name: Upload Binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: asciify-${{ matrix.go }}-${{ matrix.platform }}
+          path: ./asciify.bin
