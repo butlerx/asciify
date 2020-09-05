@@ -37,12 +37,12 @@ clean: ## Remove previous builds
 
 .PHONY: dep
 dep: ## go get all dependencies
-	@echo "🛎 Updatig Dependencies"
+	@echo "🛎 Updateing Dependencies"
 	@go get -v -d ./...
 
 .PHONY: run
 run: dep ## Compiles and runs Binary
-	@go run -race $(ASCIIFY_PKG_BUILD) --config configs/config.toml
+	@go run -race $(ASCIIFY_PKG_BUILD) --print octocat.png
 
 .PHONY: help
 help:  ## Display this help screen

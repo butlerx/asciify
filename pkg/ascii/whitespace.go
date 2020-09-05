@@ -7,10 +7,12 @@ import (
 
 func trimWhitespace(txt string) string {
 	var formatted []string
+
 	scanner := bufio.NewScanner(strings.NewReader(txt))
 	for scanner.Scan() {
 		formatted = append(formatted, strings.TrimRight(scanner.Text(), " "))
 	}
+
 	return strings.Join(trimLeft(trimRight(formatted)), "\n")
 }
 
@@ -20,6 +22,7 @@ func trimLeft(sa []string) []string {
 			return sa[i:]
 		}
 	}
+
 	return sa
 }
 
@@ -29,5 +32,6 @@ func trimRight(sa []string) []string {
 			return sa[0 : i+1]
 		}
 	}
+
 	return sa
 }

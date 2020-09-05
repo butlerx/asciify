@@ -5,50 +5,53 @@ import (
 	"os"
 	"sort"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var version = "development"
 
+const defaultWidth = 100
+
 func main() {
-	app := cli.NewApp()
-	app.Name = "asciify"
-	app.Usage = "asciffy all the things"
-	app.UsageText = "asciffy [options] IMAGE"
-	app.Description = `
+	cwd, _ := os.Getwd()
+	app := &cli.App{
+		Name:      "asciify",
+		Usage:     "asciffy all the things",
+		UsageText: "asciffy [options] IMAGE",
+		Description: `
 		Every project needs a logo, so why not an ascii one.
 		Convert image to ascii.
-		Supports injecting image to readme`
-	app.Authors = []cli.Author{
-		{
-			Name:  "Cian Butler",
-			Email: "butlerx@notthe.cloud",
+		Supports injecting image to readme`,
+		Authors: []*cli.Author{
+			{
+				Name:  "Cian Butler",
+				Email: "butlerx@notthe.cloud",
+			},
 		},
+		Version:              version,
+		EnableBashCompletion: true,
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "readme, r",
+				Usage: "Path to readme.md to inject ascii too",
+			},
+			&cli.StringFlag{
+				Name:  "path",
+				Usage: "Path to output txt file too",
+				Value: cwd,
+			},
+			&cli.BoolFlag{
+				Name:  "print, p",
+				Usage: "Print image to terminal",
+			},
+			&cli.IntFlag{
+				Name:  "width, w",
+				Usage: "Width of output",
+				Value: defaultWidth,
+			},
+		},
+		Action: run,
 	}
-	app.Version = version
-	app.EnableBashCompletion = true
-	cwd, _ := os.Getwd()
-	app.Flags = []cli.Flag{
-		cli.StringFlag{
-			Name:  "readme, r",
-			Usage: "Path to readme.md to inject ascii too",
-		},
-		cli.StringFlag{
-			Name:  "path",
-			Usage: "Path to output txt file too",
-			Value: cwd,
-		},
-		cli.BoolFlag{
-			Name:  "print, p",
-			Usage: "Print image to terminal",
-		},
-		cli.IntFlag{
-			Name:  "width, w",
-			Usage: "Width of output",
-			Value: 100,
-		},
-	}
-	app.Action = run
 	sort.Sort(cli.FlagsByName(app.Flags))
 
 	if err := app.Run(os.Args); err != nil {
