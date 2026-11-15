@@ -1,0 +1,75 @@
+[tools]
+go            = "latest"
+golangci-lint = "latest"
+prek          = "latest"
+tombi         = "1.2.5"
+zizmor        = "latest"
+actionlint    = "latest"
+shellcheck    = "latest"
+
+[settings]
+experimental = true
+lockfile     = true
+
+[tasks.build]
+description = "Build the asciify binary"
+run         = "go build -o asciify ./cmd/asciify"
+alias       = "b"
+sources     = [
+  "go.mod",
+  "go.sum",
+  "cmd/**/*.go",
+  "internal/**/*.go",
+  "pkg/**/*.go"
+]
+outputs     = ["asciify"]
+
+[tasks.test]
+description = "Run tests"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to go test"'
+run         = "go test -race -count=1 ./... ${usage_args:-}"
+alias       = "t"
+sources     = [
+  "go.mod",
+  "go.sum",
+  "cmd/**/*.go",
+  "internal/**/*.go",
+  "pkg/**/*.go"
+]
+
+[tasks.lint]
+description = "Lint code with golangci-lint"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to golangci-lint"'
+run         = "golangci-lint run ./... ${usage_args:-}"
+
+[tasks."lint:fix"]
+description = "Fix lint issues"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to golangci-lint"'
+run         = "golangci-lint run --fix ./... ${usage_args:-}"
+
+[tasks.format]
+description = "Format Go and TOML"
+run         = ["go fmt ./...", "tombi format"]
+alias       = "f"
+sources     = ["**/*.go", "**/*.toml"]
+
+[tasks."format:check"]
+description = "Check Go and TOML formatting"
+run         = ["test -z \"$(gofmt -l .)\"", "tombi format --check"]
+sources     = ["**/*.go", "**/*.toml"]
+
+[tasks."check:actions"]
+description = "Lint GitHub Actions workflows"
+run         = ["actionlint", "zizmor --no-progress .github"]
+
+[tasks.check]
+description = "Run all checks (format, lint, test, actions)"
+depends     = ["format:check", "lint", "test", "check:actions"]
+
+[tasks.hooks]
+description = "Install the prek git hooks"
+run         = "prek install --install-hooks --hook-type pre-commit --hook-type commit-msg"
+
+[tasks.clean]
+description = "Clean build artifacts"
+run         = "rm -f asciify asciify.bin asciify.zip && go clean"

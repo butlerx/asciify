@@ -1,0 +1,33 @@
+version = "2"
+
+[linters]
+disable = ["exhaustruct", "gochecknoglobals"]
+
+[linters.settings.errcheck]
+# Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
+check-type-assertions = true
+# report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`.
+check-blank           = true
+
+[linters.settings.exhaustive]
+check                        = ["switch", "map"]
+default-signifies-exhaustive = true
+
+[linters.settings.govet]
+enable = ["shadow"]
+
+[linters.settings.grouper]
+const-require-single-const   = true
+import-require-single-import = true
+
+[linters.settings.nlreturn]
+block-size = 3
+
+[linters.settings.wsl]
+force-err-cuddling = true
+
+[linters.settings.varnamelen]
+ignore-names = ["ok", "err", "i", "id"]
+
+[issues]
+fix = true

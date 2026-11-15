@@ -1,0 +1,15 @@
+# v1.0.0, not v1.1.0: Cargo and mise parse TOML 1.0, and 1.1 lets the formatter split
+# long inline tables across lines, which they then reject.
+toml-version = "v1.0.0"
+
+[files]
+# golangci-lint v2 accepts exhaustive `check = ["map"]`, which tombi's schema rejects.
+exclude = ["**/*.lock", "**/.golangci.toml"]
+
+[format.rules]
+group-blank-lines-limit         = 2
+key-value-equals-sign-alignment = true
+trailing-comment-alignment      = true
+
+[schema]
+enabled = true

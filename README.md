@@ -1,7 +1,7 @@
 # Welcome to asciify 👋
 
-[![Build and Test](https://github.com/butlerx/asciify/workflows/Build%20and%20Test/badge.svg)](https://github.com/butlerx/asciify/actions?query=workflow%3A%22UBuild+and+Test%22)
-[![Upload Release Asset](https://github.com/butlerx/asciify/workflows/Upload%20Release%20Asset/badge.svg)](https://github.com/butlerx/asciify/actions?query=workflow%3A%22Upload+Release+Asset%22)
+[![CI](https://github.com/butlerx/asciify/actions/workflows/ci.yml/badge.svg)](https://github.com/butlerx/asciify/actions/workflows/ci.yml)
+[![Release](https://github.com/butlerx/asciify/actions/workflows/release.yml/badge.svg)](https://github.com/butlerx/asciify/actions/workflows/release.yml)
 [![CodeQL](https://github.com/butlerx/asciify/workflows/CodeQL/badge.svg)](https://github.com/butlerx/asciify/actions?query=workflow%3ACodeQL)
 ![Go Version](https://img.shields.io/github/go-mod/go-version/butlerx/asciify?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/butlerx/ascii-logo/blob/master/LICENSE)
