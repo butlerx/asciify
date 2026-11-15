@@ -29,15 +29,5 @@ force-err-cuddling = true
 [linters.settings.varnamelen]
 ignore-names = ["ok", "err", "i", "id"]
 
-[[linters.exclusions.rules]]
-# TODO: burn down. Unchecked Close/Getwd errors predate this config.
-linters = ["errcheck"]
-text    = "Error return value of .*(Getwd|Close). is not checked"
-
-[[linters.exclusions.rules]]
-# TODO: burn down. Error string casing and sentinel naming predate this config.
-linters = ["staticcheck"]
-text    = "ST1005|ST1012"
-
 [issues]
 fix = true

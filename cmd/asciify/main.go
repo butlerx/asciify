@@ -13,7 +13,10 @@ var version = "development"
 const defaultWidth = 100
 
 func main() {
-	cwd, _ := os.Getwd()
+	cwd, err := os.Getwd()
+	if err != nil {
+		cwd = "."
+	}
 	app := &cli.App{
 		Name:      "asciify",
 		Usage:     "asciffy all the things",

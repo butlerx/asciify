@@ -11,7 +11,7 @@ type readme struct {
 }
 
 // InjectReadMe injects ascii in to readme where {{ . }} is.
-func InjectReadMe(readmePath, img string) error {
+func InjectReadMe(readmePath, img string) (err error) {
 	tmpl := template.Must(template.ParseFiles(readmePath))
 
 	output, err := os.Create(readmePath)
@@ -19,7 +19,11 @@ func InjectReadMe(readmePath, img string) error {
 		return err
 	}
 
-	defer output.Close()
+	defer func() {
+		if closeErr := output.Close(); closeErr != nil && err == nil {
+			err = closeErr
+		}
+	}()
 
 	return tmpl.Execute(output, readme{wrapCode(img)})
 }

@@ -11,11 +11,11 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var noFileError = errors.New("No file supplied, supply path or url of an image to convert it too ascii")
+var errNoFile = errors.New("no file supplied, supply path or url of an image to convert it too ascii")
 
 func run(ctx *cli.Context) error {
 	if ctx.NArg() == 0 {
-		return noFileError
+		return errNoFile
 	}
 
 	imgPath := ctx.Args().First()
