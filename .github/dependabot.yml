@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: 'gomod'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    groups:
+      cli-tools:
+        patterns:
+          - 'github.com/urfave/cli*'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: 'deps'
+      include: 'scope'
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    cooldown:
+      default-days: 7
