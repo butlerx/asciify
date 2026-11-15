@@ -2,7 +2,7 @@
 go            = "latest"
 golangci-lint = "latest"
 prek          = "latest"
-tombi         = "latest"
+tombi         = "1.2.5"
 zizmor        = "latest"
 actionlint    = "latest"
 shellcheck    = "latest"
@@ -15,7 +15,13 @@ lockfile     = true
 description = "Build the asciify binary"
 run         = "go build -o asciify ./cmd/asciify"
 alias       = "b"
-sources     = ["go.mod", "go.sum", "cmd/**/*.go", "internal/**/*.go", "pkg/**/*.go"]
+sources     = [
+  "go.mod",
+  "go.sum",
+  "cmd/**/*.go",
+  "internal/**/*.go",
+  "pkg/**/*.go"
+]
 outputs     = ["asciify"]
 
 [tasks.test]
@@ -23,7 +29,13 @@ description = "Run tests"
 usage       = 'arg "[args]" var=#true help="Additional arguments passed to go test"'
 run         = "go test -race -count=1 ./... ${usage_args:-}"
 alias       = "t"
-sources     = ["go.mod", "go.sum", "cmd/**/*.go", "internal/**/*.go", "pkg/**/*.go"]
+sources     = [
+  "go.mod",
+  "go.sum",
+  "cmd/**/*.go",
+  "internal/**/*.go",
+  "pkg/**/*.go"
+]
 
 [tasks.lint]
 description = "Lint code with golangci-lint"

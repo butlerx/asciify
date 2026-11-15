@@ -3,7 +3,8 @@
 toml-version = "v1.0.0"
 
 [files]
-exclude = ["**/*.lock"]
+# golangci-lint v2 accepts exhaustive `check = ["map"]`, which tombi's schema rejects.
+exclude = ["**/*.lock", "**/.golangci.toml"]
 
 [format.rules]
 group-blank-lines-limit         = 2
