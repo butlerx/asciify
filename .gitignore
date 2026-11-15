@@ -17,3 +17,6 @@
 /Godeps/
 
 asciify
+
+### GoReleaser ###
+/dist/
